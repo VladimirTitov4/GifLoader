@@ -27,7 +27,7 @@ public class MainControllerTest {
     private CurrencyService currencyService;
 
     @Test
-    public void showIframe() throws Exception {
+    public void showIframeTest() throws Exception {
         String url = "<iframe src=\"https://giphy.com/embed/WTG4m0yURDJrmYZPxf\" width=\"480\" height=\"270\" frameBorder=\"0\" class=\"giphy-embed\" allowFullScreen></iframe>";
 
         when(currencyService.getIframe()).thenReturn(url);

@@ -1,29 +1,33 @@
 package ru.titov.gifloader.service;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
-import ru.titov.gifloader.components.CurrencyComponent;
-import ru.titov.gifloader.components.GifComponent;
+import ru.titov.gifloader.components.CurrencyComparer;
+import ru.titov.gifloader.components.GifDownloader;
 
+@Slf4j
 @Service
 @RequiredArgsConstructor
 public class CurrencyService {
 
-    @Value("${appId}")
+    @Value("${apiKeys.currency}")
     private String appId;
 
-    private final CurrencyComponent currencyComponent;
+    private final CurrencyComparer currencyComparer;
+    private final GifDownloader gifDownloader;
+    public final String RAW_URL = "<iframe src=\"%s\" width=\"480\" height=\"270\" frameBorder=\"0\" class=\"giphy-embed\" allowFullScreen></iframe>";
 
-    private final GifComponent gifComponent;
-
-    public String getUrl() {
-        int compare = currencyComponent.compareCurrentAndHistoricalRubleValues(appId);
-        return gifComponent.getUrl(compare);
+    private String getUrl() {
+        log.info("Получен запрос на формирование ссылки на gif-изображение");
+        int compare = currencyComparer.compareCurrentAndHistoricalRubleValues(appId);
+        return gifDownloader.getUrlBasedOnComparedValue(compare);
     }
 
     public String getIframe() {
-        String url = getUrl();
-        return String.format("<iframe src=\"%s\" width=\"480\" height=\"270\" frameBorder=\"0\" class=\"giphy-embed\" allowFullScreen></iframe>", url);
+        String gifEmbedUrl = getUrl();
+        log.info("Сформированный gifEmbedUrl: " + gifEmbedUrl);
+        return String.format(RAW_URL, gifEmbedUrl);
     }
 }

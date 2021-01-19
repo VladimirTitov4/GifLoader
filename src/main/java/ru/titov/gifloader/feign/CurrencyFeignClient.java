@@ -2,7 +2,7 @@ package ru.titov.gifloader.feign;
 
 import feign.Param;
 import feign.RequestLine;
-import ru.titov.gifloader.dto.CurrentRubleCurrencyDto;
+import ru.titov.gifloader.dto.LatestRubleCurrencyDto;
 import ru.titov.gifloader.dto.HistoricalRubleCurrencyDto;
 
 import java.time.LocalDate;
@@ -10,7 +10,7 @@ import java.time.LocalDate;
 public interface CurrencyFeignClient {
 
     @RequestLine("GET /latest.json?app_id={appId}")
-    CurrentRubleCurrencyDto getLatestQuotes(@Param("appId") String appId);
+    LatestRubleCurrencyDto getLatestQuotes(@Param("appId") String appId);
 
     @RequestLine("GET /historical/{date}.json?app_id={appId}")
     HistoricalRubleCurrencyDto getHistoricalQuotes(
