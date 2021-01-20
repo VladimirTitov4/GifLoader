@@ -6,7 +6,8 @@ import org.springframework.stereotype.Component;
 import ru.titov.gifloader.feign.CurrencyFeignClient;
 import ru.titov.gifloader.util.CurrencyDateConverter;
 
-import java.time.*;
+import java.time.LocalDate;
+import java.util.Map;
 
 @Slf4j
 @Component
@@ -15,18 +16,29 @@ public class CurrencyDownloader {
 
     private final CurrencyFeignClient feignClient;
 
-    public String getLatestRubleValue(String appId) {
-        String latestRubleValue = feignClient.getLatestQuotes(appId).getRubleValue();
-        log.info("Текущее значение курса рубля = " + latestRubleValue);
-        return latestRubleValue;
+    public String getLatestValue(String appId, String currency) {
+        Map<String, String> details = feignClient.getLatestQuotes(appId, currency).getRates().getValues();
+        for (Map.Entry<String, String> entry : details.entrySet()) {
+            if (entry.getKey().equalsIgnoreCase(currency)) {
+                log.info("Текущее значение курса выбранной валюты = " + entry.getValue());
+                return entry.getValue();
+            }
+        }
+        return null;
     }
 
-    public String getHistoricalRubleValue(String appId) {
-        LocalDate currentRubleValueDate = CurrencyDateConverter.getCurrentRubleValueDate(feignClient.getLatestQuotes(appId).getTimestamp());
-        LocalDate previousDate = currentRubleValueDate.minusDays(1);
-        String historicalRubleValue = feignClient.getHistoricalQuotes(previousDate, appId).getRubleValue();
-        log.info("Предыдущее значение курса рубля = " + historicalRubleValue);
-        return historicalRubleValue;
+    public String getHistoricalValue(String appId, String currency) {
+        LocalDate latestValueDate = CurrencyDateConverter.getCurrentValueDate(feignClient.getLatestQuotes(appId, currency).getTimestamp());
+        log.info("Текущая дата " + latestValueDate +  "timestamp = " + feignClient.getLatestQuotes(appId, currency).getTimestamp());
+        LocalDate previousDate = latestValueDate.minusDays(1);
+        Map<String, String> details = feignClient.getHistoricalQuotes(previousDate, appId, currency).getRates().getValues();
+        for (Map.Entry<String, String> entry : details.entrySet()) {
+            if (entry.getKey().equalsIgnoreCase(currency)) {
+                log.info("Историческое значение курса выбранной валюты = " + entry.getValue());
+                return entry.getValue();
+            }
+        }
+        return null;
     }
 }
 

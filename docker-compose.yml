@@ -1,0 +1,10 @@
+version: '3'
+services:
+  app:
+    container_name: gif-loader
+    image: gif-loader
+    environment:
+      JAR_FILE: build/libs/\*.jar
+    build: ./
+    ports:
+      - "8080:8080"

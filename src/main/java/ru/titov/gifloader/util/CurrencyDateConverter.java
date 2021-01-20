@@ -9,7 +9,7 @@ import java.time.ZoneId;
 @UtilityClass
 public class CurrencyDateConverter {
 
-    public LocalDate getCurrentRubleValueDate(Long timestamp) {
+    public LocalDate getCurrentValueDate(Long timestamp) {
         return Instant.ofEpochMilli(timestamp * 1000).atZone(ZoneId.systemDefault()).toLocalDate();
     }
 }

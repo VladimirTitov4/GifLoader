@@ -21,7 +21,7 @@ public class CurrencyService {
 
     private String getUrl() {
         log.info("Получен запрос на формирование ссылки на gif-изображение");
-        int compare = currencyComparer.compareCurrentAndHistoricalRubleValues(appId);
+        int compare = currencyComparer.compareLatestAndHistoricalValues(appId);
         return gifDownloader.getUrlBasedOnComparedValue(compare);
     }
 

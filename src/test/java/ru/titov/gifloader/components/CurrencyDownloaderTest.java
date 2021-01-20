@@ -6,8 +6,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
-import ru.titov.gifloader.dto.HistoricalRubleCurrencyDto;
-import ru.titov.gifloader.dto.LatestRubleCurrencyDto;
+import ru.titov.gifloader.dto.currency.CurrencyResponseDto;
 import ru.titov.gifloader.feign.CurrencyFeignClient;
 
 import java.io.IOException;
@@ -27,13 +26,13 @@ public class CurrencyDownloaderTest {
 
     @Test
     public void getLatestRubleValueTest() throws IOException {
-        LatestRubleCurrencyDto latestRuble = new ObjectMapper().readValue(resource.getFile(), LatestRubleCurrencyDto.class);
-        when(feignClient.getLatestQuotes(anyString())).thenReturn(latestRuble);
+        CurrencyResponseDto latestRuble = new ObjectMapper().readValue(resource.getFile(), CurrencyResponseDto.class);
+        when(feignClient.getLatestQuotes(anyString(), anyString())).thenReturn(latestRuble);
     }
 
     @Test
     public void getHistoricalRubleValue() throws IOException {
-        HistoricalRubleCurrencyDto historicalRuble = new ObjectMapper().readValue(resource.getFile(), HistoricalRubleCurrencyDto.class);
-        when(feignClient.getHistoricalQuotes(any(LocalDate.class), anyString())).thenReturn(historicalRuble);
+        CurrencyResponseDto historicalRuble = new ObjectMapper().readValue(resource.getFile(), CurrencyResponseDto.class);
+        when(feignClient.getHistoricalQuotes(any(LocalDate.class), anyString(), anyString())).thenReturn(historicalRuble);
     }
 }

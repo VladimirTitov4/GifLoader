@@ -6,7 +6,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
-import ru.titov.gifloader.dto.gif.ResponseDto;
+import ru.titov.gifloader.dto.gif.GifResponseDto;
 import ru.titov.gifloader.enums.GifTagType;
 import ru.titov.gifloader.feign.GifFeignClient;
 
@@ -26,7 +26,7 @@ public class GifDownloaderTest {
 
     @Test
     public void getGifUrlTest() throws IOException {
-        ResponseDto responseDto = new ObjectMapper().readValue(resource.getFile(), ResponseDto.class);
+        GifResponseDto responseDto = new ObjectMapper().readValue(resource.getFile(), GifResponseDto.class);
         when(feignClient.getRandomGifByTag(anyString(),  any(GifTagType.class))).thenReturn(responseDto);
     }
 }

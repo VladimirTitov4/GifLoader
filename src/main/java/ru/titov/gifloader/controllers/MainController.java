@@ -14,7 +14,7 @@ public class MainController {
     private final CurrencyService currencyService;
 
     @GetMapping("/")
-    public String showGif() {
+    public String showGifBasedOnComparedCurrencyValues() {
         log.info("Получен запрос на получение gif");
         return currencyService.getIframe();
     }

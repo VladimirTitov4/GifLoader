@@ -1,21 +1,16 @@
-
-package ru.titov.gifloader.dto;
+package ru.titov.gifloader.dto.currency;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 
-import java.util.Map;
-
 @Data
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class LatestRubleCurrencyDto {
+public class CurrencyResponseDto {
+
     @JsonProperty("timestamp")
     public Long timestamp;
-    public String rubleValue;
 
     @JsonProperty("rates")
-    private void unpackNested(Map<String, String> rate) {
-        this.rubleValue = rate.get("RUB");
-    }
+    public Rates rates;
 }

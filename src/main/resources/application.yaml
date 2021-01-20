@@ -1,3 +1,5 @@
+currency:
+  type: EUR
 server:
   port: 8080
 apiKeys:

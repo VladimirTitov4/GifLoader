@@ -6,7 +6,7 @@ import lombok.Data;
 
 @Data
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class ResponseDto {
+public class GifResponseDto {
     
     @JsonProperty("data")
     public DataDto dataDto;

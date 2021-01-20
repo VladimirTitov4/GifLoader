@@ -7,6 +7,7 @@ import lombok.Data;
 @Data
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class DataDto {
+
     @JsonProperty("embed_url")
     public String url;
 }
