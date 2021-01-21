@@ -1,0 +1,7 @@
+currency:
+  type: RUB
+server:
+  port: 8080
+url:
+  currency: https://openexchangerates.org/api
+  gif: https://api.giphy.com/v1/gifs/random
