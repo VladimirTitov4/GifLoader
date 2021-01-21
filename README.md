@@ -10,6 +10,7 @@
 2. cd GifLoader/
 3. gradle clean build
 4. docker-compose up -d
+5. Открыть в браузере http://localhost:8080/
 
 Использованные технологии:
 - Java 8
