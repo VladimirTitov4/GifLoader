@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
+import ru.titov.gifloader.exceptions.CurrencyNotFoundException;
 import ru.titov.gifloader.service.CurrencyService;
 
 @Slf4j
@@ -16,6 +17,10 @@ public class MainController {
     @GetMapping("/")
     public String showGifBasedOnComparedCurrencyValues() {
         log.info("Получен запрос на получение gif");
-        return currencyService.getIframe();
+        try {
+            return currencyService.getIframe();
+        } catch (CurrencyNotFoundException e) {
+            return e.getMessage();
+        }
     }
 }
