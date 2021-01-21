@@ -7,7 +7,7 @@
 Для запуска приложения необходимо выполнить следующие команды:
 
 1. git clone https://github.com/VladimirTitov4/GifLoader.git
-2. cd app
+2. cd GifLoader/
 3. gradle clean build
 4. docker-compose up -d
 
