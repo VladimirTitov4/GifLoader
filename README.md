@@ -6,7 +6,7 @@
 
 Для запуска приложения можно скачать докер контейнер из docker hub
 
-1. gocker pull vladimirtitov4/gif-loader
+1. docker pull vladimirtitov4/gif-loader
 2. sudo docker run -p 8080:8080 vladimirtitov4/gif-loader
 3. Открыть в браузере http://localhost:8080/
 
