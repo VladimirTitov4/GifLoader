@@ -15,7 +15,7 @@
 1. git clone https://github.com/VladimirTitov4/GifLoader.git
 2. cd GifLoader/
 3. gradle clean build
-4. docker-compose up -d
+4. sudo docker-compose up -d
 5. Открыть в браузере http://localhost:8080/
 
 Использованные технологии:
