@@ -4,7 +4,13 @@
 Реализован запуск приложения с использованием секретных ключей в отдельном файле application.yml, который находится в корне проекта. 
 В тестовых целях приватные ключи предварительно установлены  
 
-Для запуска приложения необходимо выполнить следующие команды:
+Для запуска приложения можно скачать докер контейнер из docker hub
+
+1. gocker pull vladimirtitov4/gif-loader
+2. sudo docker run -p 8080:8080 vladimirtitov4/gif-loader
+3. Открыть в браузере http://localhost:8080/
+
+Или клонировать репозиторий:
 
 1. git clone https://github.com/VladimirTitov4/GifLoader.git
 2. cd GifLoader/
