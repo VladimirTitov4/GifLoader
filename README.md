@@ -20,7 +20,7 @@
 
 Использованные технологии:
 - Java 8
-- Spring Boot 2
-- Feign
-- Gradle
+- Spring Boot 2.4.2
+- Feign 11.0
+- Gradle 6.5.1
 - Lombok
